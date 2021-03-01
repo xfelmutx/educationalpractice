@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F72CC40D-6BF7-48E3-9645-36F205A52113}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WpfUPractika</RootNamespace>
+    <AssemblyName>WpfUPractika</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DB\Address.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\City.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Client.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Coordinate.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Deal.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\District.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Gender.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Need.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Offer.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Property.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Realtor.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Role.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Street.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\TypeProperty.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\upraktdb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>upraktdb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\upraktdb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\upraktdb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>upraktdb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DB\User.cs">
+      <DependentUpon>upraktdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\AddClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddDealPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddNeedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddOfferPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddPropertyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddRealtorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AvtorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DealPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NeedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OfferPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PropertyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RealtorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\AddClientPage.xaml.cs">
+      <DependentUpon>AddClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddDealPage.xaml.cs">
+      <DependentUpon>AddDealPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddNeedPage.xaml.cs">
+      <DependentUpon>AddNeedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddOfferPage.xaml.cs">
+      <DependentUpon>AddOfferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddPropertyPage.xaml.cs">
+      <DependentUpon>AddPropertyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddRealtorPage.xaml.cs">
+      <DependentUpon>AddRealtorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AvtorizationPage.xaml.cs">
+      <DependentUpon>AvtorizationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ClientPage.xaml.cs">
+      <DependentUpon>ClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DealPage.xaml.cs">
+      <DependentUpon>DealPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NeedPage.xaml.cs">
+      <DependentUpon>NeedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OfferPage.xaml.cs">
+      <DependentUpon>OfferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PropertyPage.xaml.cs">
+      <DependentUpon>PropertyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RealtorPage.xaml.cs">
+      <DependentUpon>RealtorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="DB\upraktdb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>upraktdb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DB\upraktdb.edmx.diagram">
+      <DependentUpon>upraktdb.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\account.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DB\upraktdb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>upraktdb.edmx</DependentUpon>
+      <LastGenOutput>upraktdb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB\upraktdb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>upraktdb.edmx</DependentUpon>
+      <LastGenOutput>upraktdb.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Images\background.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

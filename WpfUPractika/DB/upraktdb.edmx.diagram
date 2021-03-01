@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="94508a0895074e87bab490e92051b0f1" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="UpraktDBModel.Address" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.City" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Client" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Coordinate" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Deal" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.District" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Gender" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Need" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Offer" Width="1.5" PointX="13.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Property" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Realtor" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Role" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.Street" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.TypeProperty" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UpraktDBModel.User" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="UpraktDBModel.FK_Address_City" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Address_District" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Address_Street" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Need_Address1" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Property_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Client_Gender1" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Need_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Offer_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_User_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Coordinate_District" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Deal_Need" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Deal_Offer" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Realtor_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Need_Realtor" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Need_TypeProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Offer_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Offer_Realtor" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_Property_TypeProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_User_Realtor" ManuallyRouted="false" />
+        <AssociationConnector Association="UpraktDBModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

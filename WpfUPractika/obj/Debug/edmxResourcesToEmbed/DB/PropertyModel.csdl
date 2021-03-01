@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UpractikaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="StreetId" Type="Int32" />
+    <Property Name="HomeNumber" Type="Int32" />
+    <Property Name="ApartamentNumber" Type="Int32" />
+    <Property Name="DistrictId" Type="Int32" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Address_City" FromRole="Address" ToRole="City" />
+    <NavigationProperty Name="District" Relationship="Self.FK_Address_District" FromRole="Address" ToRole="District" />
+    <NavigationProperty Name="Street" Relationship="Self.FK_Address_Street" FromRole="Address" ToRole="Street" />
+    <NavigationProperty Name="Property" Relationship="UpractikaDBModel.FK_Property_Address" FromRole="Address" ToRole="Property" />
+    <NavigationProperty Name="Need" Relationship="UpractikaDBModel.FK_Need_Address1" FromRole="Address" ToRole="Need" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="Self.FK_Address_City" FromRole="City" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Offer" Relationship="Self.FK_Offer_Client" FromRole="Client" ToRole="Offer" />
+    <NavigationProperty Name="User" Relationship="UpractikaDBModel.FK_User_Client" FromRole="Client" ToRole="User" />
+    <Property Name="PathImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Need" Relationship="UpractikaDBModel.FK_Need_Client" FromRole="Client" ToRole="Need" />
+  </EntityType>
+  <EntityType Name="Coordinate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+    <Property Name="Longtitude" Type="Double" Nullable="false" />
+    <Property Name="DistrictId" Type="Int32" />
+    <NavigationProperty Name="District" Relationship="Self.FK_Coordinate_District" FromRole="Coordinate" ToRole="District" />
+  </EntityType>
+  <EntityType Name="Deal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OfferId" Type="Int32" Nullable="false" />
+    <Property Name="NeedId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Offer" Relationship="Self.FK_Deal_Offer" FromRole="Deal" ToRole="Offer" />
+    <NavigationProperty Name="Need" Relationship="UpractikaDBModel.FK_Deal_Need" FromRole="Deal" ToRole="Need" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="Self.FK_Address_District" FromRole="District" ToRole="Address" />
+    <NavigationProperty Name="Coordinate" Relationship="Self.FK_Coordinate_District" FromRole="District" ToRole="Coordinate" />
+  </EntityType>
+  <EntityType Name="Offer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="RealtorId" Type="Int32" Nullable="false" />
+    <Property Name="PropertyId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Offer_Client" FromRole="Offer" ToRole="Client" />
+    <NavigationProperty Name="Deal" Relationship="Self.FK_Deal_Offer" FromRole="Offer" ToRole="Deal" />
+    <NavigationProperty Name="Realtor" Relationship="Self.FK_Offer_Realtor" FromRole="Offer" ToRole="Realtor" />
+    <NavigationProperty Name="Property" Relationship="UpractikaDBModel.FK_Offer_Property" FromRole="Offer" ToRole="Property" />
+  </EntityType>
+  <EntityType Name="Realtor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShareOfComisia" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Offer" Relationship="Self.FK_Offer_Realtor" FromRole="Realtor" ToRole="Offer" />
+    <NavigationProperty Name="User" Relationship="UpractikaDBModel.FK_User_Realtor" FromRole="Realtor" ToRole="User" />
+    <Property Name="PathImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Need" Relationship="UpractikaDBModel.FK_Need_Realtor" FromRole="Realtor" ToRole="Need" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Street">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="Self.FK_Address_Street" FromRole="Street" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="TypeProperty">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Property" Relationship="UpractikaDBModel.FK_Property_TypeProperty" FromRole="TypeProperty" ToRole="Property" />
+    <NavigationProperty Name="Need" Relationship="UpractikaDBModel.FK_Need_TypeProperty" FromRole="TypeProperty" ToRole="Need" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+    <Property Name="ClientId" Type="Int32" />
+    <Property Name="RealtorId" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="UpractikaDBModel.FK_User_Client" FromRole="User" ToRole="Client" />
+    <NavigationProperty Name="Realtor" Relationship="UpractikaDBModel.FK_User_Realtor" FromRole="User" ToRole="Realtor" />
+  </EntityType>
+  <Association Name="FK_Address_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_Street">
+    <End Role="Street" Type="Self.Street" Multiplicity="0..1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Street">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="StreetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Offer_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Offer">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coordinate_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Coordinate" Type="Self.Coordinate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Coordinate">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_Offer">
+    <End Role="Offer" Type="Self.Offer" Multiplicity="1" />
+    <End Role="Deal" Type="Self.Deal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Deal">
+        <PropertyRef Name="OfferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Offer_Realtor">
+    <End Role="Realtor" Type="Self.Realtor" Multiplicity="1" />
+    <End Role="Offer" Type="Self.Offer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Realtor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Offer">
+        <PropertyRef Name="RealtorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UpractikaDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Address" EntityType="Self.Address" />
+    <EntitySet Name="City" EntityType="Self.City" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Coordinate" EntityType="Self.Coordinate" />
+    <EntitySet Name="Deal" EntityType="Self.Deal" />
+    <EntitySet Name="District" EntityType="Self.District" />
+    <EntitySet Name="Offer" EntityType="Self.Offer" />
+    <EntitySet Name="Realtor" EntityType="Self.Realtor" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Street" EntityType="Self.Street" />
+    <EntitySet Name="TypeProperty" EntityType="Self.TypeProperty" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Address_City" Association="Self.FK_Address_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_District" Association="Self.FK_Address_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_Street" Association="Self.FK_Address_Street">
+      <End Role="Street" EntitySet="Street" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Offer_Client" Association="Self.FK_Offer_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Offer" EntitySet="Offer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coordinate_District" Association="Self.FK_Coordinate_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="Coordinate" EntitySet="Coordinate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_Offer" Association="Self.FK_Deal_Offer">
+      <End Role="Offer" EntitySet="Offer" />
+      <End Role="Deal" EntitySet="Deal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Offer_Realtor" Association="Self.FK_Offer_Realtor">
+      <End Role="Realtor" EntitySet="Realtor" />
+      <End Role="Offer" EntitySet="Offer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Client" Association="UpractikaDBModel.FK_User_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Realtor" Association="UpractikaDBModel.FK_User_Realtor">
+      <End Role="Realtor" EntitySet="Realtor" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="UpractikaDBModel.sysdiagrams" />
+    <EntitySet Name="Property" EntityType="UpractikaDBModel.Property" />
+    <AssociationSet Name="FK_Property_Address" Association="UpractikaDBModel.FK_Property_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Offer_Property" Association="UpractikaDBModel.FK_Offer_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="Offer" EntitySet="Offer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_TypeProperty" Association="UpractikaDBModel.FK_Property_TypeProperty">
+      <End Role="TypeProperty" EntitySet="TypeProperty" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <EntitySet Name="Need" EntityType="UpractikaDBModel.Need" />
+    <AssociationSet Name="FK_Need_Address1" Association="UpractikaDBModel.FK_Need_Address1">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Need" EntitySet="Need" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Need_Client" Association="UpractikaDBModel.FK_Need_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Need" EntitySet="Need" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_Need" Association="UpractikaDBModel.FK_Deal_Need">
+      <End Role="Need" EntitySet="Need" />
+      <End Role="Deal" EntitySet="Deal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Need_Realtor" Association="UpractikaDBModel.FK_Need_Realtor">
+      <End Role="Realtor" EntitySet="Realtor" />
+      <End Role="Need" EntitySet="Need" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Need_TypeProperty" Association="UpractikaDBModel.FK_Need_TypeProperty">
+      <End Role="TypeProperty" EntitySet="TypeProperty" />
+      <End Role="Need" EntitySet="Need" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_User_Client">
+    <End Type="UpractikaDBModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="UpractikaDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Realtor">
+    <End Type="UpractikaDBModel.Realtor" Role="Realtor" Multiplicity="0..1" />
+    <End Type="UpractikaDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Realtor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RealtorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="Floor" Type="Int32" />
+    <Property Name="Room" Type="Int32" />
+    <Property Name="Area" Type="Double" />
+    <Property Name="AddressId" Type="Int32" />
+    <NavigationProperty Name="Address" Relationship="UpractikaDBModel.FK_Property_Address" FromRole="Property" ToRole="Address" />
+    <NavigationProperty Name="Offer" Relationship="UpractikaDBModel.FK_Offer_Property" FromRole="Property" ToRole="Offer" />
+    <NavigationProperty Name="TypeProperty" Relationship="UpractikaDBModel.FK_Property_TypeProperty" FromRole="Property" ToRole="TypeProperty" />
+  </EntityType>
+  <Association Name="FK_Property_Address">
+    <End Type="UpractikaDBModel.Address" Role="Address" Multiplicity="0..1" />
+    <End Type="UpractikaDBModel.Property" Role="Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Offer_Property">
+    <End Type="UpractikaDBModel.Property" Role="Property" Multiplicity="1" />
+    <End Type="UpractikaDBModel.Offer" Role="Offer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Offer">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_TypeProperty">
+    <End Type="UpractikaDBModel.TypeProperty" Role="TypeProperty" Multiplicity="1" />
+    <End Type="UpractikaDBModel.Property" Role="Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeProperty">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Need">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientId" Type="Int32" />
+    <Property Name="RealtorId" Type="Int32" />
+    <Property Name="TypePropertyId" Type="Int32" />
+    <Property Name="AddressId" Type="Int32" />
+    <Property Name="MinPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MaxPrice" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Address" Relationship="UpractikaDBModel.FK_Need_Address1" FromRole="Need" ToRole="Address" />
+    <NavigationProperty Name="Client" Relationship="UpractikaDBModel.FK_Need_Client" FromRole="Need" ToRole="Client" />
+    <NavigationProperty Name="Deal" Relationship="UpractikaDBModel.FK_Deal_Need" FromRole="Need" ToRole="Deal" />
+    <NavigationProperty Name="Realtor" Relationship="UpractikaDBModel.FK_Need_Realtor" FromRole="Need" ToRole="Realtor" />
+    <NavigationProperty Name="TypeProperty" Relationship="UpractikaDBModel.FK_Need_TypeProperty" FromRole="Need" ToRole="TypeProperty" />
+  </EntityType>
+  <Association Name="FK_Need_Address1">
+    <End Type="UpractikaDBModel.Address" Role="Address" Multiplicity="0..1" />
+    <End Type="UpractikaDBModel.Need" Role="Need" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Need">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Need_Client">
+    <End Type="UpractikaDBModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="UpractikaDBModel.Need" Role="Need" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Need">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_Need">
+    <End Type="UpractikaDBModel.Need" Role="Need" Multiplicity="1" />
+    <End Type="UpractikaDBModel.Deal" Role="Deal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Need">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Deal">
+        <PropertyRef Name="NeedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Need_Realtor">
+    <End Type="UpractikaDBModel.Realtor" Role="Realtor" Multiplicity="0..1" />
+    <End Type="UpractikaDBModel.Need" Role="Need" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Realtor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Need">
+        <PropertyRef Name="RealtorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Need_TypeProperty">
+    <End Type="UpractikaDBModel.TypeProperty" Role="TypeProperty" Multiplicity="0..1" />
+    <End Type="UpractikaDBModel.Need" Role="Need" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeProperty">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Need">
+        <PropertyRef Name="TypePropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
